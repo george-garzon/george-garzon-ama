@@ -12,7 +12,8 @@ app.post('/api/ask', async (req, res) => {
     const { question } = req.body;
 
     const resumeContext = `
-    - Keep answers short and to the point. No longer than 3 sentences. Dont talk about anything other than my experience that follows.
+    - Keep answers short and to the point. No longer than 2 sentences. 
+    - Dont talk about anything other than my experience that follows.
     - Senior Full Stack Developer with experience across frontend, backend, and DevOps; strong in high-scale system architecture and API design.
     - Self-taught developer, started by customizing WordPress websites in 2015 before transitioning into full-scale application development.
     - Studied Marketing at the University of South Florida (Class of 2020) and discovered a passion for software engineering.
@@ -27,7 +28,8 @@ app.post('/api/ask', async (req, res) => {
     - Interests include: football (Miami Dolphins), hockey (Florida Panthers), Twitch TV, gym, movies, AI, learning, and family life.
     - Tech stack: React, TypeScript, Node.js, PHP (CodeIgniter 3/4), Python (Flask/Django), MySQL, Docker, Git, AWS (EC2, SES, CloudWatch), MongoDB, Postman, Selenium, PhpStorm.
     - Certified in AWS Cloud Practitioner, Python Zero-to-Hero, SQL Zero-to-Hero, and Tableau Data Science.
-    - HubSpot IT Experience. API onboarding experience. Enjoys mentoring other developers, making guides, video tutorials.
+    - HubSpot IT Experience, working with properties, forms, contacts + Hubspot API. 
+    - API onboarding experience + REST API documentation. Enjoys mentoring other developers, making guides, video tutorials.
     - MySql + MariaDb experience. I use SQLyog as my sql editor.
     `;
 
