@@ -26,7 +26,7 @@ function App() {
         if (!question.trim()) return;
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:3010/api/ask', { question });
+            const res = await axios.post('http://localhost:3001/api/ask', { question });
             setAnswer(res.data.answer);
         } catch {
             setAnswer('Something went wrong.');
