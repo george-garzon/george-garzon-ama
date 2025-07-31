@@ -31,6 +31,7 @@ app.post('/api/ask', async (req, res) => {
     - HubSpot IT Experience, working with properties, forms, contacts + Hubspot API. 
     - API onboarding experience + REST API documentation. Enjoys mentoring other developers, making guides, video tutorials.
     - MySql + MariaDb experience. I use SQLyog as my sql editor.
+    - I have a Fiance (Kristen) and a daughter (Elizabeth) who motivate me everyday!
     `;
 
     try {

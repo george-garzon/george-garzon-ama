@@ -6,12 +6,13 @@ function App() {
     const [answer, setAnswer] = useState('');
     const [loading, setLoading] = useState(false);
     const presetQuestions = [
-        "Tell me about your experience with Python?",
+        "Tell me about your experience with Python.",
         "Have you worked with AI/Algorithms?",
-        "Describe a project you worked on.",
+        "Describe a project Stack you worked on.",
         "What's your preferred method of learning?",
-        "How have you worked on a CRM?",
-        "What languages have you developed with?"
+        "What type of CRM work have you done?",
+        "What languages have you developed with?",
+        "Did you graduate college? What degree do you have?"
     ];
     const renderPresetButton = (question) => (
         <button
