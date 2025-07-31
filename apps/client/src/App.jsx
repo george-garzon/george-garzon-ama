@@ -5,7 +5,23 @@ function App() {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const presetQuestions = [
+        "Tell me about your experience with Python?",
+        "Have you worked with AI/Algorithms?",
+        "Describe a project you worked on.",
+        "What's your preferred method of learning?",
+        "How have you worked on a CRM?",
+        "What languages have you developed with?"
+    ];
+    const renderPresetButton = (question) => (
+        <button
+            key={question}
+            onClick={() => handlePresetClick(question)}
+            className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition"
+        >
+            {question}
+        </button>
+    );
     const askAI = async () => {
         if (!question.trim()) return;
         setLoading(true);
@@ -19,7 +35,7 @@ function App() {
     };
     const [messages, setMessages] = useState([
         {
-            text: "Hi, I'm George! 👋 I'm an AI trained to answer questions about my professional background. Feel free to ask me anything about my education, work experience, skills, or projects! I can tell you about my research at the Weizmann Institute, my work at Novartis, my experience in VC, or anything else you'd like to know about my professional journey. Click on my picture if you want to see my LinkedIn profile!",
+            text: "Hi, I'm George! 👋 I'm an AI trained to answer questions about my professional background. Feel free to ask me anything about my education, work experience, skills, or projects! I can tell you about my research at the University of South Florida, my work at Olympia, my experience in Full Stack Development, or anything else you'd like to know about my professional journey.",
             sender: "them",
             status: "read",
         },
@@ -52,7 +68,8 @@ function App() {
         setQuestion('');
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:3001/api/ask', { question: text });
+            const res = await axios.post('http://localhost:3001/api/ask',
+                { question: text });
             setMessages((prev) => [
                 ...prev,
                 { text: res.data.answer, sender: 'them', status: 'read' },
@@ -68,6 +85,7 @@ function App() {
 
 
     return (
+        <>
         <div className="page-wrapper flex flex-col h-full w-full">
             <>
                 {/* Title */}
@@ -82,41 +100,19 @@ function App() {
                 <div className="container">
                     <div className="imessage">
                         {messages.map((msg, i) => (
-                            <div className="imessage" key={i} className={msg.sender === 'me' ? 'from-me-container' : 'from-them-container'}>
+                            <div key={i} className={` ${msg.sender === 'me' ? 'from-me-container' : 'from-them-container'}`}>
                                 <p className={msg.sender === 'me' ? 'from-me' : 'from-them'}>
                                     {msg.text}
 
                                 </p>
                                 {msg.sender === 'me' && (
-                                <span className="block text-xs mt-1 text-[#9A9A9A]">
+                                    <span className="block text-xs mt-1 text-[#9A9A9A]">
                                   {msg.status === 'read' ? 'Read' : 'Delivered'}
                                 </span>
                                 )}
                             </div>
                         ))}
                     </div>
-
-                    {/*<div className="imessage">*/}
-                    {/*    <p className="from-them margin-b_one">*/}
-                    {/*        Hi, I'm George! 👋 I'm an AI trained to answer questions about my professional background.*/}
-                    {/*        Feel free to ask me anything about my education, work experience, skills, or projects! I can*/}
-                    {/*        tell you about my research at the Weizmann Institute, my work at Novartis, my experience in*/}
-                    {/*        VC, or anything else you'd like to know about my professional journey. Click on my picture*/}
-                    {/*        if you want to see my LinkedIn profile!*/}
-                    {/*    </p>*/}
-                    {/*    <p className="from-me no-tail margin-b_none">*/}
-                    {/*        Brock turns around and goes back to Cyntheeah’s room. The nurse tries to*/}
-                    {/*        stop him, which is uncharacteristic of the nurse since she hasn’t been*/}
-                    {/*        doing her job at all today. As Brock opens the hospital room door he and*/}
-                    {/*        the nurse see the bed is empty...*/}
-                    {/*    </p>*/}
-
-                    {/*    <p className="from-me">*/}
-                    {/*        Joze is in his car applying a fake mustache to his face, cuz he’s always*/}
-                    {/*        been a Tom Selleck fan. He checks his Glock, puts on his sunglasses, then*/}
-                    {/*        lets the tires of his Ford Ranchero squeal down the road.*/}
-                    {/*    </p>*/}
-                    {/*</div>*/}
 
                 </div>
                 <div className="w-full max-w-xl">
@@ -129,9 +125,8 @@ function App() {
                                 placeholder="Ask a question..."
                                 className="w-full bg-transparent placeholder-[#9A9A9A] text-white focus:outline-none"
                             />
-                            <button onClick={() => sendMessage(question)} className="...">Send</button>
-
                             <button
+                                onClick={() => sendMessage(question)}
                                 className="bg-[#2F2F2F] text-white text-sm px-4 py-2 rounded-lg hover:bg-[#3a3a3a] transition">
                                 Send
                             </button>
@@ -142,37 +137,15 @@ function App() {
                 </div>
                 {/* Preset buttons */}
                 <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-white">
-                    <button
-                        onClick={() => handlePresetClick("What financial tools have you built?")}
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        What financial tools have you built?
-                    </button>
-                    <button
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        Have you designed a searchable directory?
-                    </button>
-                    <button
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        Describe a project management app you built.
-                    </button>
-                    <button
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        Show examples of landing pages you've created.
-                    </button>
-                    <button
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        How have you built or worked on a CRM?
-                    </button>
-                    <button
-                        className="text-xs text-[#9A9A9A] px-[8px] py-[4px] bg-[#101010] border border-[#282828] rounded-full hover:bg-zinc-700 transition">
-                        What mobile apps have you developed?
-                    </button>
+                    {presetQuestions.map(renderPresetButton)}
                 </div>
             </>
 
         </div>
+        </>
 
-    );
+
+);
 }
 
 export default App;
