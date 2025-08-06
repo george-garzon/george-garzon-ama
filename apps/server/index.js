@@ -1,15 +1,12 @@
 require('dotenv').config();
+// const fastify = require('fastify')({ logger: {level: "error"}, trustProxy: true })
+const PORT = process.env.PORT || 3000
+// fastify.register(require('@fastify/cors'))
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const app = express();
-const PORT = 3001;
-app.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(`https://${req.headers.host}${req.url}`);
-    }
-    next();
-});
+
 const corsOptions = {
     origin: 'https://garzn.com',
     methods: ['POST', 'OPTIONS'],
@@ -98,7 +95,24 @@ app.get('/', (req, res) => {
     res.send('🟢 AMA API is up');
 });
 
-app.listen(3010, '0.0.0.0', () => {
-    console.log('✅ Server listening on 0.0.0.0:3010');
+app.listen(3000, '0.0.0.0', () => {
+    console.log('✅ Server listening on 0.0.0.0:3000');
 });
 
+// fastify.get('/health', function (req, reply) {
+//     return 'OK'
+// })
+//
+// const start = async () => {
+//     try {
+//         await fastify.listen({
+//             host: '0.0.0.0',
+//             port: PORT
+//         })
+//         console.log('Server listening on http://localhost:3000');
+//     } catch (err) {
+//         fastify.log.error(err)
+//         process.exit(1)
+//     }
+// }
+// start()

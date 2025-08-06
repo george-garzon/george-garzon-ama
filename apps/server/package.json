@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "^11.1.0",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "fastify": "^5.4.0"
   },
   "description": ""
 }
