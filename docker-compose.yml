@@ -4,7 +4,9 @@ services:
   server:
     build:
       context: ./apps/server
-#    ports:
+    ports:
+      - "3010"
+    #    ports:
 #      - "3010:3010"  # Host:Container
 #    environment:
 #      - PORT=3010
