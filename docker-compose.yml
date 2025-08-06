@@ -5,10 +5,22 @@ services:
     build:
       context: ./apps/server
     ports:
-      - "3010:3000"  # Host:Container
+      - "3010:3001"  # Host:Container
     env_file:
       - ./apps/server/.env
     restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.server.rule=Host(`ama.garzn.com`)
+      - traefik.http.routers.server.entrypoints=websecure
+      - traefik.http.routers.server.tls.certresolver=letsencrypt
+      - traefik.http.services.server.loadbalancer.server.port=3001
+      - traefik.http.middlewares.cors.headers.accesscontrolalloworigin=https://garzn.com
+      - traefik.http.middlewares.cors.headers.accesscontrolallowmethods=POST,OPTIONS
+      - traefik.http.middlewares.cors.headers.accesscontrolallowheaders=Content-Type,Authorization
+      - traefik.http.routers.server.middlewares=cors
+    networks:
+      - web
 
   client:
     build:
