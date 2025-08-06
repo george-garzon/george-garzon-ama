@@ -6,12 +6,13 @@ const app = express();
 const PORT = 3001;
 
 const corsOptions = {
-    origin: 'https://garzn.com', // allow only your frontend
-    methods: ['POST'], // allow POST method
-    allowedHeaders: ['Content-Type', 'Authorization'], // allow required headers
+    origin: 'https://garzn.com',
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/ask', async (req, res) => {
