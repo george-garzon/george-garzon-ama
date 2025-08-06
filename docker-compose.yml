@@ -5,7 +5,7 @@ services:
     build:
       context: ./apps/server
     ports:
-      - "3001:3001"  # Host:Container
+      - "3010:3010"  # Host:Container
     env_file:
       - ./apps/server/.env
     restart: unless-stopped
