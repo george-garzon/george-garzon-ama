@@ -4,7 +4,12 @@ const cors = require('cors');
 const axios = require('axios');
 const app = express();
 const PORT = 3001;
-
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(`https://${req.headers.host}${req.url}`);
+    }
+    next();
+});
 const corsOptions = {
     origin: 'https://garzn.com',
     methods: ['POST', 'OPTIONS'],
