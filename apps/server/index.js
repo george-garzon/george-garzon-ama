@@ -93,7 +93,7 @@ app.get('/', (req, res) => {
     res.send('🟢 AMA API is up');
 });
 
-app.listen(3001, '0.0.0.0', () => {
-    console.log('✅ Server listening on 0.0.0.0:3001');
+app.listen(3010, '0.0.0.0', () => {
+    console.log('✅ Server listening on 0.0.0.0:3010');
 });
 
