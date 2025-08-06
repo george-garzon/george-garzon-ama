@@ -5,7 +5,13 @@ const axios = require('axios');
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://garzn.com', // allow only your frontend
+    methods: ['POST'], // allow POST method
+    allowedHeaders: ['Content-Type', 'Authorization'], // allow required headers
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/ask', async (req, res) => {
