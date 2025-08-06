@@ -4,8 +4,8 @@ services:
   server:
     build:
       context: ./apps/server
-    ports:
-      - "3010"
+#    ports:
+#      - "3010"
     #    ports:
 #      - "3010:3010"  # Host:Container
 #    environment:
@@ -21,7 +21,7 @@ services:
   client:
     build:
       context: ./apps/client
-    ports:
-      - "81:80"  # Host:Container
+#    ports:
+#      - "81:80"  # Host:Container
     depends_on:
       - server
