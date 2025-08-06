@@ -19,8 +19,6 @@ services:
       - traefik.http.middlewares.cors.headers.accesscontrolallowmethods=POST,OPTIONS
       - traefik.http.middlewares.cors.headers.accesscontrolallowheaders=Content-Type,Authorization
       - traefik.http.routers.server.middlewares=cors
-    networks:
-      - web
 
   client:
     build:
