@@ -95,8 +95,8 @@ app.get('/', (req, res) => {
     res.send('🟢 AMA API is up');
 });
 
-app.listen({PORT}, '0.0.0.0', () => {
-    console.log(`✅ Server listening on 0.0.0.0:${PORT}`);
+app.listen(3000, '0.0.0.0', () => {
+    console.log(`✅ Server listening on 0.0.0.0:3000`);
 });
 //
 // // fastify.get('/health', function (req, reply) {
