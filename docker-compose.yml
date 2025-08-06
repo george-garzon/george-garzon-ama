@@ -5,41 +5,15 @@ services:
     build:
       context: ./apps/server
     ports:
-      - "3010:3010"  # Optional: only for direct testing via IP
+      - "3010:3010"  # Host:Container
     env_file:
       - ./apps/server/.env
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.server.entrypoints=websecure
-      - traefik.http.routers.server.rule=Host(`ama.garzn.com`)
-      - traefik.http.routers.server.tls.certresolver=letsencrypt
-      - traefik.http.routers.server.tls=true
-      - traefik.http.middlewares.server-gzip.compress=true
-      - traefik.http.routers.server.middlewares=server-gzip
-      - traefik.http.services.server.loadbalancer.server.port=3010  # 🚨 Internal container port
-    networks:
-      - web
 
   client:
     build:
       context: ./apps/client
     ports:
-      - "81:80"
+      - "81:80"  # Host:Container
     depends_on:
       - server
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.client.entrypoints=websecure
-      - traefik.http.routers.client.rule=Host(`garzn.com`)
-      - traefik.http.routers.client.tls.certresolver=letsencrypt
-      - traefik.http.routers.client.tls=true
-      - traefik.http.middlewares.client-gzip.compress=true
-      - traefik.http.routers.client.middlewares=client-gzip
-      - traefik.http.services.client.loadbalancer.server.port=80
-    networks:
-      - web
-
-networks:
-  web:
-#    external: true
