@@ -69,7 +69,7 @@ function App() {
         setQuestion('');
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:3001/api/ask',
+            const res = await axios.post('http://ama.garzn.com/api/ask',
                 { question: text });
             setMessages((prev) => [
                 ...prev,
