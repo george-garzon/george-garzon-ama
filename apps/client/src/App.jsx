@@ -27,7 +27,7 @@ function App() {
         if (!question.trim()) return;
         setLoading(true);
         try {
-            const res = await axios.post('http://ama.garzn.com/api/ask', { question });
+            const res = await axios.post('https://ama.garzn.com/api/ask', { question });
             setAnswer(res.data.answer);
         } catch {
             setAnswer('Something went wrong.');
@@ -69,7 +69,7 @@ function App() {
         setQuestion('');
         setLoading(true);
         try {
-            const res = await axios.post('http://ama.garzn.com/api/ask',
+            const res = await axios.post('https://ama.garzn.com/api/ask',
                 { question: text });
             setMessages((prev) => [
                 ...prev,
