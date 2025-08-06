@@ -89,6 +89,11 @@ app.post('/api/ask', async (req, res) => {
     }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
+app.get('/', (req, res) => {
+    res.send('🟢 AMA API is up');
 });
+
+app.listen(3001, '0.0.0.0', () => {
+    console.log('✅ Server listening on 0.0.0.0:3001');
+});
+
