@@ -4,14 +4,14 @@ services:
   server:
     build:
       context: ./apps/server
-    ports:
-      - "3010:3010"  # Host:Container
-    environment:
-      - PORT=3010
-    labels:
-      - "coolify.proxy=true"
-      - "coolify.domain=ama.garzn.com"
-      - "coolify.port=3010"
+#    ports:
+#      - "3010:3010"  # Host:Container
+#    environment:
+#      - PORT=3010
+#    labels:
+#      - "coolify.proxy=true"
+#      - "coolify.domain=ama.garzn.com"
+#      - "coolify.port=3010"
     env_file:
       - ./apps/server/.env
     restart: unless-stopped
