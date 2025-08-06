@@ -5,19 +5,13 @@ services:
     build:
       context: ./apps/server
     expose:
-      - 3000
+      - 3001
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - PORT=3100
-#    ports:
-#      - "3010"
+      - PORT=3001
     ports:
-      - "3100:3000"
+      - "3001:3001"
       - "9229:9229" # For debugging
-#    labels:
-#      - "coolify.proxy=true"
-#      - "coolify.domain=ama.garzn.com"
-#      - "coolify.port=3010"
     env_file:
       - ./apps/server/.env
     restart: unless-stopped
