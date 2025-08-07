@@ -75,7 +75,7 @@ fastify.post('/api/ask', async (request, reply) => {
         const response = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
-                model: 'mistralai/mistral-7b-instruct',
+                model: 'openai/gpt-4o',
                 messages: [
                     { role: 'system', content: resumeContext },
                     { role: 'user', content: question }
@@ -84,10 +84,14 @@ fastify.post('/api/ask', async (request, reply) => {
             {
                 headers: {
                     Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'AMA-Fastify-Client/1.0', // Fixes 401 from upstream providers
+                    'HTTP-Referer': 'https://garzn.com',     // Optional, helps with ranking
+                    'X-Title': 'George AMA Bot'              // Optional, helps with ranking
                 }
             }
         )
+
 
         const answer = response.data.choices[0].message.content.trim()
         return reply.send({ answer })
