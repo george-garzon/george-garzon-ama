@@ -82,7 +82,7 @@ fastify.post('/api/ask', async (request, reply) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer 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`,
+                    Authorization: `Bearer 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`,
                     'Content-Type': 'application/json'
                 }
             }
