@@ -71,6 +71,7 @@ fastify.post('/api/ask', async (request, reply) => {
         - API onboarding experience + REST API documentation. Enjoys mentoring other developers, making guides, video tutorials.
     `;
     try {
+        console.log('[ENV] KEY:', process.env.OPENROUTER_API_KEY);
         const response = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
@@ -82,7 +83,7 @@ fastify.post('/api/ask', async (request, reply) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer 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`,
+                    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                     'Content-Type': 'application/json'
                 }
             }
