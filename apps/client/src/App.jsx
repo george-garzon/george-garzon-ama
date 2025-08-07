@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_API_BASE_URL || 'https://fastify.garzn.com';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_API_BASE_URL || 'http://localhost:3000';
 
 
 function App() {
