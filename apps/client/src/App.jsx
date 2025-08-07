@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_API_BASE_URL || 'https://fastify.garzn.com';
+
 
 function App() {
     const [question, setQuestion] = useState('');
@@ -27,7 +29,7 @@ function App() {
         if (!question.trim()) return;
         setLoading(true);
         try {
-            const res = await axios.post(`${process.env.BACKEND_API_BASE_URL}/api/ask`, { question });
+            const res = await axios.post(`${BACKEND_URL}/api/ask`, { question });
             setAnswer(res.data.answer);
         } catch {
             setAnswer('Something went wrong.');
@@ -69,7 +71,7 @@ function App() {
         setQuestion('');
         setLoading(true);
         try {
-            const res = await axios.post(`${process.env.BACKEND_API_BASE_URL}/api/ask`,
+            const res = await axios.post(`${BACKEND_URL}/api/ask`,
                 { question: text });
             setMessages((prev) => [
                 ...prev,
