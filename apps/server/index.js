@@ -60,7 +60,8 @@ Also worked with HubSpot APIs, forms, contact properties, and automation. I enjo
                 messages: [
                     { role: 'system', content: resumeContext },
                     { role: 'user', content: question }
-                ]
+                ],
+                max_tokens: 500
             },
             {
                 headers: {
