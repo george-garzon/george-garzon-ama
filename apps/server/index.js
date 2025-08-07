@@ -81,7 +81,7 @@ fastify.post('/api/ask', async (request, reply) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+                    Authorization: `Bearer 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`,
                     'Content-Type': 'application/json'
                 }
             }
@@ -90,8 +90,11 @@ fastify.post('/api/ask', async (request, reply) => {
         const answer = response.data.choices[0].message.content.trim()
         return reply.send({ answer })
     } catch (err) {
-        fastify.log.error('OpenRouter error:', err.response?.data || err.message)
-        return reply.status(500).send({ error: 'Failed to get response from OpenRouter' })
+        fastify.log.error('OpenRouter error:', err?.response?.data || err?.message || err)
+        return reply.status(500).send({
+            error: 'Failed to get response from OpenRouter',
+            details: err?.response?.data || err?.message || 'Unknown error'
+        })
     }
 })
 const start = async () => {
