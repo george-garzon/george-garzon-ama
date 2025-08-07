@@ -37,6 +37,7 @@ fastify.get('/health', function (req, reply) {
 // POST /api/ask
 fastify.post('/api/ask', async (request, reply) => {
     const { question } = request.body
+    console.log('[ASK]', question); // ✅ log the question to terminal
     const resumeContext = `
         You are answering questions *as me*, in the first person.
 
