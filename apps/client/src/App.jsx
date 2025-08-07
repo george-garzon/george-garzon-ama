@@ -27,7 +27,7 @@ function App() {
         if (!question.trim()) return;
         setLoading(true);
         try {
-            const res = await axios.post('http://ama.garzn.com:3010/api/ask', { question });
+            const res = await axios.post(`${process.env.BACKEND_API_BASE_URL}/api/ask`, { question });
             setAnswer(res.data.answer);
         } catch {
             setAnswer('Something went wrong.');
@@ -69,7 +69,7 @@ function App() {
         setQuestion('');
         setLoading(true);
         try {
-            const res = await axios.post('http://ama.garzn.com:3010/api/ask',
+            const res = await axios.post(`${process.env.BACKEND_API_BASE_URL}/api/ask`,
                 { question: text });
             setMessages((prev) => [
                 ...prev,
